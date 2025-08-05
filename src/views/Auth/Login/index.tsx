@@ -24,10 +24,8 @@ const LoginViews = () => {
       </button>
       
       {/* Link to the Register page */}
-      <Link href="/auth/register">
-        <a className="text-2xl text-yellow-400 mt-4 block">
-          Register
-        </a>
+      <Link href="/auth/register" className="text-2xl text-yellow-400 mt-4 block">
+        Register
       </Link>
     </div>
   );
