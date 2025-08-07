@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useState } from "react";
 
 const DetailProduct = () => {
   const { query } = useRouter();
@@ -19,6 +20,30 @@ const DetailProduct = () => {
     ]
   };
 
+  // State untuk notifikasi order
+  const [orderMsg, setOrderMsg] = useState("");
+
+  const handleAddToCart = () => {
+    if (typeof window !== "undefined") {
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      // Cek duplikat berdasarkan id
+      if (!cart.find((item: any) => item.id === product.id)) {
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        window.dispatchEvent(new Event("storage")); // update header
+        setOrderMsg("Produk berhasil ditambahkan ke keranjang!");
+      } else {
+        setOrderMsg("Produk sudah ada di keranjang!");
+      }
+      setTimeout(() => setOrderMsg(""), 2000);
+    }
+  };
+
+  const handleBuyNow = () => {
+    setOrderMsg("Terima kasih, pesanan Anda sedang diproses!");
+    setTimeout(() => setOrderMsg(""), 2000);
+  };
+
   return (
     <div className="container mx-auto p-6">
       <div className="mb-6">
@@ -26,7 +51,11 @@ const DetailProduct = () => {
           ← Back to Products
         </Link>
       </div>
-      
+      {orderMsg && (
+        <div className="mb-4 p-3 bg-green-100 text-green-800 rounded">
+          {orderMsg}
+        </div>
+      )}
       <div className="bg-white rounded-lg shadow-lg p-6">
         <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
         <p className="text-2xl font-bold text-blue-600 mb-4">{product.price}</p>
@@ -42,10 +71,10 @@ const DetailProduct = () => {
         </div>
         
         <div className="flex space-x-4">
-          <button className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
+          <button onClick={handleAddToCart} className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
             Add to Cart
           </button>
-          <button className="bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-600">
+          <button onClick={handleBuyNow} className="bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-600">
             Buy Now
           </button>
         </div>
