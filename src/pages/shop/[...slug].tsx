@@ -1,9 +1,12 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useState } from "react";
 
 const ShopPage = () => {
     const {query} = useRouter();
     const slug = query.slug as string[];
+    // State untuk notifikasi order
+    const [orderMsg, setOrderMsg] = useState("");
     
     // Mock shop data based on slug
     const getShopData = () => {
@@ -47,35 +50,57 @@ const ShopPage = () => {
     };
     
     const shopData = getShopData();
+
+    const handleAddToCart = (itemName: string) => {
+        if (typeof window !== "undefined") {
+            const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+            const item = shopData.items.find((i) => i.name === itemName);
+            if (!item) return;
+            if (!cart.find((p: any) => p.name === item.name)) {
+                cart.push(item);
+                localStorage.setItem("cart", JSON.stringify(cart));
+                window.dispatchEvent(new Event("storage"));
+                setOrderMsg(`${itemName} berhasil ditambahkan ke keranjang!`);
+            } else {
+                setOrderMsg(`${itemName} sudah ada di keranjang!`);
+            }
+            setTimeout(() => setOrderMsg(""), 2000);
+        }
+    };
     
     return (
-        <div className="container mx-auto p-6">
-            <div className="mb-6">
-                <Link href="/" className="text-blue-500 hover:text-blue-700">
-                    ← Back to Home
-                </Link>
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+            <div className="container mx-auto px-6 py-12">
+                <div className="mb-6">
+                    <Link href="/shop" className="text-blue-500 hover:text-blue-700">
+                        ← Kembali ke Shop Home
+                    </Link>
+                </div>
+                {orderMsg && (
+                    <div className="mb-4 p-3 bg-green-100 text-green-800 rounded">
+                        {orderMsg}
+                    </div>
+                )}
+                <h1 className="text-4xl font-bold mb-4 text-blue-700">{shopData.title}</h1>
+                <p className="text-gray-600 mb-8">{shopData.description}</p>
+                {shopData.items.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {shopData.items.map((item) => (
+                            <div key={item.id} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                                <h2 className="text-2xl font-semibold mb-2 text-blue-600">{item.name}</h2>
+                                <p className="text-lg font-bold text-blue-600 mb-4">{item.price}</p>
+                                <button onClick={() => handleAddToCart(item.name)} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-8">
+                        <p className="text-gray-500">No items available in this category.</p>
+                    </div>
+                )}
             </div>
-            
-            <h1 className="text-3xl font-bold mb-4">{shopData.title}</h1>
-            <p className="text-gray-600 mb-6">{shopData.description}</p>
-            
-            {shopData.items.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {shopData.items.map((item) => (
-                        <div key={item.id} className="border rounded-lg p-4 shadow-md">
-                            <h2 className="text-xl font-semibold mb-2">{item.name}</h2>
-                            <p className="text-lg font-bold text-blue-600 mb-4">{item.price}</p>
-                            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                                Add to Cart
-                            </button>
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <div className="text-center py-8">
-                    <p className="text-gray-500">No items available in this category.</p>
-                </div>
-            )}
         </div>
     );
 };
