@@ -1,30 +1,29 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/pages/_app";
 
 const Header = () => {
+    const { user, isAuthenticated, logout } = useAuth();
     const [cartCount, setCartCount] = useState(0);
-    const [isLogin, setIsLogin] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         if (typeof window !== "undefined") {
             const cart = JSON.parse(localStorage.getItem("cart") || "[]");
             setCartCount(cart.length);
-            setIsLogin(localStorage.getItem("isLogin") === "true");
         }
         // Listen to storage event for cross-tab sync
         const handleStorage = () => {
             const cart = JSON.parse(localStorage.getItem("cart") || "[]");
             setCartCount(cart.length);
-            setIsLogin(localStorage.getItem("isLogin") === "true");
         };
         window.addEventListener("storage", handleStorage);
         return () => window.removeEventListener("storage", handleStorage);
     }, []);
 
     const handleLogout = () => {
-        localStorage.removeItem("isLogin");
-        setIsLogin(false);
+        logout();
+        setIsMobileMenuOpen(false);
     };
 
     return (
@@ -68,7 +67,7 @@ const Header = () => {
                                     Shop
                                 </Link>
                             </li>
-                            {isLogin && (
+                            {isAuthenticated && (
                                 <li>
                                     <Link 
                                         href="/dashboard" 
@@ -93,13 +92,18 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li>
-                                {isLogin ? (
-                                    <button
-                                        onClick={handleLogout}
-                                        className="bg-white text-primary-600 px-4 py-2 rounded-lg hover:bg-primary-50 transition-colors duration-200 font-medium"
-                                    >
-                                        Logout
-                                    </button>
+                                {isAuthenticated ? (
+                                    <div className="flex items-center space-x-3">
+                                        <span className="text-sm text-primary-100">
+                                            Halo, {user?.name || user?.email}
+                                        </span>
+                                        <button
+                                            onClick={handleLogout}
+                                            className="bg-white text-primary-600 px-4 py-2 rounded-lg hover:bg-primary-50 transition-colors duration-200 font-medium"
+                                        >
+                                            Logout
+                                        </button>
+                                    </div>
                                 ) : (
                                     <Link 
                                         href="/auth/login"
@@ -159,7 +163,7 @@ const Header = () => {
                                     Shop
                                 </Link>
                             </li>
-                            {isLogin && (
+                            {isAuthenticated && (
                                 <li>
                                     <Link 
                                         href="/dashboard" 
@@ -186,16 +190,18 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li>
-                                {isLogin ? (
-                                    <button
-                                        onClick={() => {
-                                            handleLogout();
-                                            setIsMobileMenuOpen(false);
-                                        }}
-                                        className="w-full text-left py-2 hover:text-primary-100 transition-colors duration-200"
-                                    >
-                                        Logout
-                                    </button>
+                                {isAuthenticated ? (
+                                    <div className="py-2">
+                                        <div className="text-sm text-primary-100 mb-2">
+                                            Halo, {user?.name || user?.email}
+                                        </div>
+                                        <button
+                                            onClick={handleLogout}
+                                            className="w-full text-left py-2 hover:text-primary-100 transition-colors duration-200"
+                                        >
+                                            Logout
+                                        </button>
+                                    </div>
                                 ) : (
                                     <Link 
                                         href="/auth/login"
