@@ -79,20 +79,20 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-blue-900 shadow-lg min-h-screen p-6 flex flex-col">
+      <aside className="w-64 bg-primary-900 shadow-lg min-h-screen p-6 flex flex-col">
         <h2 className="text-2xl font-bold text-white mb-8">Dashboard</h2>
         <nav className="flex-1">
           <ul className="space-y-4">
             <li>
-              <button onClick={() => setMenu('product')} className={`w-full text-left px-4 py-2 rounded transition-colors duration-150 ${menu==='product'?'bg-blue-500 text-white font-bold':'text-blue-100 hover:bg-blue-800 hover:text-white'}`}>Product</button>
+              <button onClick={() => setMenu('product')} className={`w-full text-left px-4 py-2 rounded transition-colors duration-150 ${menu==='product'?'bg-primary-600 text-white font-bold':'text-primary-100 hover:bg-primary-800 hover:text-white'}`}>Product</button>
             </li>
             <li>
-              <button onClick={() => setMenu('stats')} className={`w-full text-left px-4 py-2 rounded transition-colors duration-150 ${menu==='stats'?'bg-blue-500 text-white font-bold':'text-blue-100 hover:bg-blue-800 hover:text-white'}`}>Stats</button>
+              <button onClick={() => setMenu('stats')} className={`w-full text-left px-4 py-2 rounded transition-colors duration-150 ${menu==='stats'?'bg-primary-600 text-white font-bold':'text-primary-100 hover:bg-primary-800 hover:text-white'}`}>Stats</button>
             </li>
             <li>
-              <button onClick={() => setMenu('user')} className={`w-full text-left px-4 py-2 rounded transition-colors duration-150 ${menu==='user'?'bg-blue-500 text-white font-bold':'text-blue-100 hover:bg-blue-800 hover:text-white'}`}>User</button>
+              <button onClick={() => setMenu('user')} className={`w-full text-left px-4 py-2 rounded transition-colors duration-150 ${menu==='user'?'bg-primary-600 text-white font-bold':'text-primary-100 hover:bg-primary-800 hover:text-white'}`}>User</button>
             </li>
           </ul>
         </nav>
@@ -108,7 +108,7 @@ const Dashboard = () => {
               <h2 className="text-2xl font-semibold mb-4">Tambah Kategori</h2>
               <form className="flex gap-4" onSubmit={handleAddCategory}>
                 <input type="text" className="border px-3 py-2 rounded w-full" placeholder="Nama kategori" value={catName} onChange={e => setCatName(e.target.value)} required />
-                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Tambah</button>
+                <button type="submit" className="bg-primary-600 text-white px-4 py-2 rounded hover:bg-primary-700">Tambah</button>
               </form>
               <ul className="mt-4">
                 {categories.map((cat) => (
@@ -131,7 +131,7 @@ const Dashboard = () => {
                     <option key={cat.id} value={cat.id}>{cat.name}</option>
                   ))}
                 </select>
-                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Tambah</button>
+                <button type="submit" className="bg-primary-600 text-white px-4 py-2 rounded hover:bg-primary-700">Tambah</button>
               </form>
             </div>
             {/* List produk */}
@@ -157,7 +157,7 @@ const Dashboard = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
               <div>
                 <div className="font-bold">Total Add to Cart</div>
-                <div className="text-2xl text-blue-600">{totalStats.addToCart}</div>
+                <div className="text-2xl text-primary-600">{totalStats.addToCart}</div>
                 <Bar value={totalStats.addToCart} max={maxStat} color="#3b82f6" />
               </div>
               <div>
@@ -185,7 +185,7 @@ const Dashboard = () => {
                   {products.map((prod) => (
                     <tr key={prod.id} className="border-b">
                       <td className="p-2">{prod.name}</td>
-                      <td className="p-2 text-blue-600">{stats[prod.id]?.addToCart || 0}</td>
+                      <td className="p-2 text-primary-600">{stats[prod.id]?.addToCart || 0}</td>
                       <td className="p-2 text-green-600">{stats[prod.id]?.buyNow || 0}</td>
                       <td className="p-2 text-red-600">{stats[prod.id]?.cancel || 0}</td>
                     </tr>
