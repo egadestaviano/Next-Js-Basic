@@ -9,52 +9,52 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-white shadow-lg">
+        <nav className="bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-lg">
             <div className="container mx-auto px-6">
                 <div className="flex justify-between items-center py-4">
                     <div className="flex items-center">
-                        <Link href="/" className="text-2xl font-bold text-blue-600">
-                            MyApp
+                        <Link href="/" className="text-2xl font-bold">
+                            ShopHub
                         </Link>
                     </div>
-                    
+
                     <div className="hidden md:flex space-x-8">
-                        <Link 
-                            href="/" 
+                        <Link
+                            href="/"
                             className={`text-lg font-medium transition-colors ${
-                                isActive('/') 
-                                    ? 'text-blue-600 border-b-2 border-blue-600' 
-                                    : 'text-gray-600 hover:text-blue-600'
+                                isActive('/')
+                                    ? 'text-white border-b-2 border-white'
+                                    : 'text-primary-100 hover:text-white'
                             }`}
                         >
                             Home
                         </Link>
-                        <Link 
-                            href="/product" 
+                        <Link
+                            href="/product"
                             className={`text-lg font-medium transition-colors ${
-                                isActive('/product') 
-                                    ? 'text-blue-600 border-b-2 border-blue-600' 
-                                    : 'text-gray-600 hover:text-blue-600'
+                                isActive('/product')
+                                    ? 'text-white border-b-2 border-white'
+                                    : 'text-primary-100 hover:text-white'
                             }`}
                         >
                             Products
                         </Link>
-                        <Link 
-                            href="/shop" 
+                        <Link
+                            href="/shop"
                             className={`text-lg font-medium transition-colors ${
-                                isActive('/shop') 
-                                    ? 'text-blue-600 border-b-2 border-blue-600' 
-                                    : 'text-gray-600 hover:text-blue-600'
+                                isActive('/shop')
+                                    ? 'text-white border-b-2 border-white'
+                                    : 'text-primary-100 hover:text-white'
                             }`}
                         >
                             Shop
                         </Link>
                     </div>
-                    
+
                     <div className="flex items-center space-x-4">
-                        <Link 
-                            href="/auth/login" 
-                            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+                        <Link
+                            href="/auth/login"
+                            className="bg-white text-primary-600 px-4 py-2 rounded-lg hover:bg-primary-50 transition-colors"
                         >
                             Login
                         </Link>
