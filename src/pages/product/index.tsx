@@ -37,10 +37,10 @@ const ProductPage = () => {
 
   if (!isLogin) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100">
         <div className="text-center bg-white p-8 rounded-lg shadow-lg">
           <h1 className="text-2xl font-bold mb-4">Please login first</h1>
-          <Link href="/auth/login" className="bg-blue-500 text-white px-4 py-2 rounded">
+          <Link href="/auth/login" className="bg-primary-600 text-white px-4 py-2 rounded hover:bg-primary-700">
             Go to Login
           </Link>
         </div>
@@ -49,7 +49,7 @@ const ProductPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100">
       <div className="container mx-auto px-6 py-12">
         <div className="flex justify-between items-center mb-10">
           <h1 className="text-5xl font-bold text-gray-800">Products</h1>
@@ -68,12 +68,12 @@ const ProductPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product) => (
             <div key={product.id} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
-              <h2 className="text-2xl font-semibold mb-2 text-blue-600">{product.name}</h2>
+              <h2 className="text-2xl font-semibold mb-2 text-primary-600">{product.name}</h2>
               <p className="text-gray-600 mb-2">{product.description}</p>
-              <p className="text-lg font-bold text-blue-600 mb-4">{product.price}</p>
+              <p className="text-lg font-bold text-primary-600 mb-4">{product.price}</p>
               <button
                 onClick={() => handleViewDetails(product.id)}
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 inline-block"
+                className="bg-primary-600 text-white px-4 py-2 rounded hover:bg-primary-700 inline-block"
               >
                 View Details
               </button>
@@ -81,7 +81,7 @@ const ProductPage = () => {
           ))}
         </div>
         <div className="mt-12 text-center">
-          <Link href="/" className="text-blue-500 hover:text-blue-700">
+          <Link href="/" className="text-primary-600 hover:text-primary-700">
             ← Kembali ke Home
           </Link>
         </div>
