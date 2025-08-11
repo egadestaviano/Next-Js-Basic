@@ -168,7 +168,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary-600"></div>
       </div>
     );
@@ -186,18 +186,20 @@ function MyApp({ Component, pageProps }: AppProps) {
         {/* Open Graph */}
         <meta property="og:title" content="ShopHub - Toko Online Terpercaya" />
         <meta property="og:description" content="Belanja online aman, nyaman, dan terpercaya dengan berbagai produk berkualitas" />
-        <meta property="og:image" content="https://yourdomain.com/og-image.jpg" />
-        <meta property="og:url" content="https://yourdomain.com" />
+        <meta property="og:image" content="/vercel.svg" />
+        <meta property="og:url" content="/" />
         
         {/* Twitter */}
         <meta name="twitter:title" content="ShopHub - Toko Online Terpercaya" />
         <meta name="twitter:description" content="Belanja online aman, nyaman, dan terpercaya dengan berbagai produk berkualitas" />
-        <meta name="twitter:image" content="https://yourdomain.com/twitter-image.jpg" />
+        <meta name="twitter:image" content="/vercel.svg" />
         
         {/* Canonical URL */}
-        <link rel="canonical" href="https://yourdomain.com" />
+        <link rel="canonical" href="/" />
       </Head>
-      <Component {...pageProps} />
+      <AppShell>
+        <Component {...pageProps} />
+      </AppShell>
     </AuthContext.Provider>
   );
 }
