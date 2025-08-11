@@ -1,21 +1,20 @@
 import { useRouter } from "next/router";
-import Navbar from "../Navbar"
+import Header from "../Header"
 
 type AppShellProps = {
     children: React.ReactNode
 }
 
-const disableNavbar = ["/auth/login", "/auth/register", "/404"];
+const disableHeader = ["/auth/login", "/auth/register", "/404"];
 
 const AppShell = (props: AppShellProps) => {
-    const {pathname} = useRouter();
-    const {children} = props;
-    
-    
+    const { pathname } = useRouter();
+    const { children } = props;
+
     return (
-        <div>
+        <div className="min-h-screen bg-white text-gray-900">
+            {!disableHeader.includes(pathname) && <Header />}
             <main>
-                {!disableNavbar.includes(pathname) && <Navbar />}
                 {children}
             </main>
             {/* <Footer /> */}
