@@ -47,7 +47,7 @@ const DetailProduct = () => {
   return (
     <div className="container mx-auto p-6">
       <div className="mb-6">
-        <Link href="/product" className="text-blue-500 hover:text-blue-700">
+        <Link href="/product" className="text-primary-600 hover:text-primary-700">
           ← Back to Products
         </Link>
       </div>
@@ -58,7 +58,7 @@ const DetailProduct = () => {
       )}
       <div className="bg-white rounded-lg shadow-lg p-6">
         <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
-        <p className="text-2xl font-bold text-blue-600 mb-4">{product.price}</p>
+        <p className="text-2xl font-bold text-primary-600 mb-4">{product.price}</p>
         <p className="text-gray-600 mb-6">{product.description}</p>
         
         <div className="mb-6">
@@ -71,7 +71,7 @@ const DetailProduct = () => {
         </div>
         
         <div className="flex space-x-4">
-          <button onClick={handleAddToCart} className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
+          <button onClick={handleAddToCart} className="bg-primary-600 text-white px-6 py-2 rounded hover:bg-primary-700">
             Add to Cart
           </button>
           <button onClick={handleBuyNow} className="bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-600">
