@@ -96,7 +96,6 @@ const RegisterPage = () => {
           <p className="text-gray-600">Buat akun ShopHub baru</p>
         </div>
 
-        {/* Notification */}
         {notif && (
           <div className={`mb-6 p-4 rounded-lg text-center ${
             notif.includes('berhasil') 
@@ -107,7 +106,6 @@ const RegisterPage = () => {
           </div>
         )}
 
-        {/* Registration Form */}
         <form className="space-y-4" onSubmit={handleRegister}>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
