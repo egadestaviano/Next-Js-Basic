@@ -10,7 +10,6 @@ const ProductPage = () => {
     { id: 3, name: "Product 3", price: "$300", description: "This is product 3" },
   ]);
   const { push } = useRouter();
-  // State untuk notifikasi
   const [notif, setNotif] = useState("");
 
   useEffect(() => {
