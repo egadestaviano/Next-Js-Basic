@@ -213,7 +213,6 @@ const RegisterPage = () => {
           </button>
         </form>
 
-        {/* Footer Links */}
         <div className="mt-6 text-center">
           <Link 
             href="/auth/login" 
@@ -223,7 +222,6 @@ const RegisterPage = () => {
           </Link>
         </div>
 
-        {/* Back to Home */}
         <div className="mt-4 text-center">
           <Link 
             href="/" 
