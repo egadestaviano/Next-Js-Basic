@@ -30,7 +30,6 @@ const Dashboard = () => {
     }
   }, [push]);
 
-  // CRUD & stat logic (sama seperti sebelumnya)
   const handleAddCategory = (e: React.FormEvent) => {
     e.preventDefault();
     if (!catName.trim()) return;
@@ -211,5 +210,6 @@ const Dashboard = () => {
     </div>
   );
 };
+
 
 export default Dashboard;
