@@ -25,7 +25,7 @@ const ShopPage = () => {
                 items: [
                     { id: 1, name: "Smartphone", price: "$500" },
                     { id: 2, name: "Laptop", price: "$1200" },
-                    { id: 3, name: "Headphones", price: "$150" }
+                    { id: 3, name: "Headphones", price: "$170" }
                 ]
             };
         }
