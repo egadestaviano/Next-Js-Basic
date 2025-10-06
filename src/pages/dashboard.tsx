@@ -63,7 +63,7 @@ const Dashboard = () => {
     setProducts(newProds);
     localStorage.setItem("products", JSON.stringify(newProds));
   };
-  // Bar chart sederhana
+
   const Bar = ({ value, max, color }: { value: number, max: number, color: string }) => (
     <div className="h-4 bg-gray-200 rounded">
       <div style={{ width: `${max ? (value / max) * 100 : 0}%`, background: color }} className="h-4 rounded"></div>
@@ -213,3 +213,4 @@ const Dashboard = () => {
 
 
 export default Dashboard;
+
