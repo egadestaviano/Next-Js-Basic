@@ -49,7 +49,6 @@ const LoginViews = () => {
           <p className="text-gray-600">Masuk ke akun ShopHub Anda</p>
         </div>
 
-        {/* Notification */}
         {notif && (
           <div className={`mb-6 p-4 rounded-lg text-center ${
             notif.includes('berhasil') 
