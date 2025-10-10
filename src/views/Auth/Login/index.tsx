@@ -60,7 +60,6 @@ const LoginViews = () => {
           </div>
         )}
 
-        {/* Login Form */}
         <form className="space-y-6" onSubmit={handleLogin}>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
