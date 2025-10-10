@@ -133,7 +133,6 @@ const LoginViews = () => {
           </Link>
         </div>
 
-        {/* Back to Home */}
         <div className="mt-4 text-center">
           <Link 
             href="/" 
