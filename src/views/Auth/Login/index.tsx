@@ -123,7 +123,6 @@ const LoginViews = () => {
           </p>
         </div>
 
-        {/* Footer Links */}
         <div className="mt-6 text-center">
           <Link 
             href="/auth/register" 
